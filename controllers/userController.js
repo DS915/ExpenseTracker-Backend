@@ -97,7 +97,7 @@ export async function loginUser(req, res){
         console.error(err);
         res.status(500).json({
             success: false,
-            message: "Server Error"
+            message: err.message
         });
     }
 }

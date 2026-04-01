@@ -20,6 +20,15 @@ app.use(express.urlencoded({extended: true}));
 //DB
 connectDB();
 
+app.use((req, res, next) => {
+    res.on("finish" , () => {
+        console.log("origin", res.getHeader("Access-Control-Allow-Origin"));
+        
+    })
+
+    next()
+})
+
 //ROUTES
 app.use("/api/user", userRouter);
 app.use("/api/income", incomeRouter);

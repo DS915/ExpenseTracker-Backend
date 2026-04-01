@@ -34,13 +34,20 @@ app.use("/api/income", incomeRouter);
 app.use("/api/expense", expenseRouter);
 app.use("/api/dashboard", dashboardRouter);
 
-app.get('/', (req,res)=>{
+app.get('/', async (req,res)=>{
+
+        //DB
+try {
+    await connectDB();
+} catch (error) {
+    console.log("error", error.message);
+    
+}
     res.send("API WORKING");
 })
 
 app.listen(port,async ()=>{
 
-    //DB
-await connectDB();
+
     console.log(`Server Started on http://localhost:${port}`);
 })

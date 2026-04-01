@@ -17,8 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-//DB
-connectDB();
+
 
 app.use((req, res, next) => {
     res.on("finish" , () => {
@@ -39,6 +38,9 @@ app.get('/', (req,res)=>{
     res.send("API WORKING");
 })
 
-app.listen(port,()=>{
+app.listen(port,async ()=>{
+
+    //DB
+await connectDB();
     console.log(`Server Started on http://localhost:${port}`);
 })

@@ -38,7 +38,9 @@ app.get('/', async (req,res)=>{
 
         //DB
 try {
-    await connectDB();
+    const db = await connectDB();
+    console.log(db);
+    
 } catch (error) {
     console.log("error", error.message);
     
